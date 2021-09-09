@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.library {
+  display: flex;
+  justify-content: flex-start;
+  border: 1px solid green;
+  width: 50%;
+  height: 100%;
+}
+
+.ui {
+  display: flex;
+  justify-content: flex-end;
+  border: 1px solid red;
+  width: 50%;
+  height: 100%;
+}
+
+#addBook{
+    
+}
