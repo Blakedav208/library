@@ -31,14 +31,6 @@ function addBookToLibrary(book) {
 
 
 
-
-
-function addBooksToPage(library) {
-  library.forEach((book) => {
-    console.log(book);
-  });
-} //end of add books to page
-
 //========JS ===========
 
 const library = document.querySelector(".library");
@@ -51,8 +43,35 @@ const pagesField = document.getElementById("numPages");
 const hasReadField = document.getElementById("hasRead");
 
 
+function clearFields(){
+    authorField.value = '';
+    titleField.value = '';
+    pagesField.value = '';
+    hasReadField.value = '';
+}
+
+
+
+  function createBookElement(book){
+      const bookElement = document.createElement("div");
+      bookElement.textContent = `${book.info()}`;
+      return bookElement;
+
+  }//end of create book element
+
+  function addBooksToPage(libraryArr) {
+    libraryArr.forEach((book) => {
+      let bookCard = createBookElement(book);
+      library.appendChild(bookCard);
+    });
+  } //end of add books to page
+
 addBookBtn.addEventListener('click', () => {
     let newBook = new Book(authorField.value, titleField.value, parseInt(pagesField.value), hasReadField.value);
     addBookToLibrary(newBook);
+    createBookElement(newBook);
+    addBooksToPage(myLibrary);
+    clearFields();
     console.log(myLibrary);
 });
+
