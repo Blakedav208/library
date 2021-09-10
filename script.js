@@ -29,8 +29,6 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-
-
 //========JS ===========
 
 const library = document.querySelector(".library");
@@ -42,36 +40,34 @@ const titleField = document.getElementById("author");
 const pagesField = document.getElementById("numPages");
 const hasReadField = document.getElementById("hasRead");
 
-
-function clearFields(){
-    authorField.value = '';
-    titleField.value = '';
-    pagesField.value = '';
-    hasReadField.value = '';
+function clearFields() {
+  authorField.value = "";
+  titleField.value = "";
+  pagesField.value = "";
+  hasReadField.value = "";
 }
 
+function createBookElement(book) {
+  const bookElement = document.createElement("div");
+  bookElement.classList.add('book');
+  bookElement.textContent = book.info();
+  return bookElement;
+} //end of create book element
 
+function addBookToPage(bookCard) {
+  library.appendChild(bookCard);
+} //end of add books to page
 
-  function createBookElement(book){
-      const bookElement = document.createElement("div");
-      bookElement.textContent = `${book.info()}`;
-      return bookElement;
-
-  }//end of create book element
-
-  function addBooksToPage(libraryArr) {
-    libraryArr.forEach((book) => {
-      let bookCard = createBookElement(book);
-      library.appendChild(bookCard);
-    });
-  } //end of add books to page
-
-addBookBtn.addEventListener('click', () => {
-    let newBook = new Book(authorField.value, titleField.value, parseInt(pagesField.value), hasReadField.value);
-    addBookToLibrary(newBook);
-    createBookElement(newBook);
-    addBooksToPage(myLibrary);
-    clearFields();
-    console.log(myLibrary);
+addBookBtn.addEventListener("click", () => {
+  let newBook = new Book(
+    authorField.value,
+    titleField.value,
+    parseInt(pagesField.value),
+    hasReadField.value
+  );
+  addBookToLibrary(newBook);
+  let bookCard = createBookElement(newBook);
+  addBookToPage(bookCard);
+  clearFields();
+  console.log(myLibrary);
 });
-
