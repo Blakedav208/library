@@ -49,7 +49,7 @@ function clearFields() {
 
 function createBookElement(book) {
   const bookElement = document.createElement("div");
-  bookElement.classList.add('book');
+  bookElement.classList.add("book");
   bookElement.textContent = book.info();
   return bookElement;
 } //end of create book element
