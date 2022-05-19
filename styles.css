@@ -12,28 +12,35 @@
 }
 
 .ui {
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
+  background-color: lightgray;
   border: 20px solid blue;
   width: 100%;
   height: auto;
 }
 
 .bookShelf {
+  display: flex;
   /* justify-content: flex-end; */
   /* align-items: flex-start; */
-  border: 20px solid red;
+  background-image: url("./images/empty-bookshelf.jpeg");
+  /* border: 20px solid red; */
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .book {
-  height: 200px;
-  width: 150px;
-  border: 10px solid lightblue;
+  background-image: url("./images/blank-orange-book-cover.webp");
+  background-position: center center;
+  height: 150px;
+  width: 100px;
+  /* border: 10px solid lightblue; */
+  margin: 10px;
 }
 
 form input[type="text"] {
+  /* this selector selects all elements of input type text that are children of the form tag */
   margin: 10px;
 }
 
@@ -41,6 +48,6 @@ form button {
   margin: 10px;
 }
 
-form{
+form {
   margin: 10px;
 }
