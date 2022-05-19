@@ -19,21 +19,16 @@ Book.prototype.info = function () {
   );
 };
 
-const book = new Book("Clean Code", "Uncle Rob", 300, false);
-
-const book2 = new Book("How to Code", "Blake Davis", 250, false);
-
-const book3 = new Book("Learn to Code", "Lauren Davis", 400, true);
-
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-//========JS ===========
+//======== JS for the DOM ===========
 
 const library = document.querySelector(".library");
 const ui = document.querySelector(".ui");
 const addBookBtn = document.getElementById("addBook");
+const bookShelf = document.querySelector(".bookShelf");
 
 const authorField = document.getElementById("title");
 const titleField = document.getElementById("author");
@@ -55,7 +50,7 @@ function createBookElement(book) {
 } //end of create book element
 
 function addBookToPage(bookCard) {
-  library.appendChild(bookCard);
+  bookShelf.appendChild(bookCard);
 } //end of add books to page
 
 addBookBtn.addEventListener("click", () => {
