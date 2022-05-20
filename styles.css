@@ -73,11 +73,13 @@ form button {
 }
 
 form button:hover{
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
+  cursor: pointer;
+  background-color: #3F51F5;
 }
 
 form {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Koulen', Times, serif;
   box-sizing: border-box;
   margin: 10px;
 }
