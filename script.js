@@ -8,15 +8,7 @@ function Book(title, author, numPages, hasRead) {
 } //end of Book object constructor
 
 Book.prototype.info = function () {
-  return (
-    this.title +
-    " by " +
-    this.author +
-    ", " +
-    this.numPages +
-    ", " +
-    this.hasRead
-  );
+  return this.title + " by " + this.author + " # of Pages: " + this.numPages;
 };
 
 function addBookToLibrary(book) {
@@ -44,8 +36,26 @@ function clearFields() {
 
 function createBookElement(book) {
   const bookElement = document.createElement("div");
+  const title = document.createElement("p");
+  const author = document.createElement("p");
+  const numPages = document.createElement("p");
+  const hasRead = document.createElement("p");
   bookElement.classList.add("book");
-  bookElement.textContent = book.info();
+
+  title.textContent = `"${book.title}"`;
+  author.textContent = "By: " + book.author;
+  numPages.textContent = "# of Pages: " + book.numPages;
+
+  if (book.hasRead.toLowerCase() == "no") {
+    hasRead.textContent += "Have not Read";
+  } else {
+    hasRead.textContent += "Have Read";
+  }
+
+  bookElement.appendChild(title);
+  bookElement.appendChild(author);
+  bookElement.appendChild(numPages);
+  bookElement.appendChild(hasRead);
   return bookElement;
 } //end of create book element
 
