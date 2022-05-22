@@ -67,7 +67,7 @@ form input[type="radio"] {
   color: red;
 }
 
-form button {
+form input[type="submit"] {
   appearance: none;
   padding: 10px;
   border: none;
@@ -77,7 +77,7 @@ form button {
   margin: 10px;
 }
 
-form button:hover{
+form input[type="submit"]:hover{
   /* transform: scale(1.2); */
   cursor: pointer;
   background-color: #3F51F5;
