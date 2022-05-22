@@ -25,13 +25,35 @@ const bookShelf = document.querySelector(".bookShelf");
 const authorField = document.getElementById("title");
 const titleField = document.getElementById("author");
 const pagesField = document.getElementById("numPages");
-const hasReadField = document.getElementById("hasRead");
+const hasReadField = document.getElementsByName("hasRead");
+
+function checkIfValidNumber(numberField){
+  //let number = numberField.value;
+  if(numberField.value <= 0){
+
+    return;
+    
+  }else{
+    return numberField.value;
+  }
+}
+
+function determineValue(fieldToBeChecked){
+  const valueOfHasReadField = Array.from(fieldToBeChecked).filter((field) => field.checked == true);
+
+  if(valueOfHasReadField[0].value == "Yes"){
+    return "Yes";
+  }else{
+    return "No";
+  }
+}
+
 
 function clearFields() {
   authorField.value = "";
   titleField.value = "";
   pagesField.value = "";
-  hasReadField.value = "";
+  hasReadField.forEach(field => field.checked = false);
 }
 
 function createBookElement(book) {
@@ -46,7 +68,7 @@ function createBookElement(book) {
   author.textContent = "By: " + book.author;
   numPages.textContent = "# of Pages: " + book.numPages;
 
-  if (book.hasRead.toLowerCase() == "no") {
+  if (book.hasRead == "No") {
     hasRead.textContent += "Have not Read";
   } else {
     hasRead.textContent += "Have Read";
@@ -63,12 +85,12 @@ function addBookToPage(bookCard) {
   bookShelf.appendChild(bookCard);
 } //end of add books to page
 
-addBookBtn.addEventListener("click", () => {
+addBookBtn.addEventListener("click", (event) => {
   let newBook = new Book(
     authorField.value,
     titleField.value,
-    parseInt(pagesField.value),
-    hasReadField.value
+    checkIfValidNumber(pagesField),
+    determineValue(hasReadField)
   );
   addBookToLibrary(newBook);
   let bookCard = createBookElement(newBook);
