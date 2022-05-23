@@ -27,17 +27,27 @@ const titleField = document.getElementById("author");
 const pagesField = document.getElementById("numPages");
 const hasReadField = document.getElementsByName("hasRead");
 
+const form = document.getElementById('form');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+});
+
 pagesField.addEventListener('input', () => {
   pagesField.setCustomValidity('');
   pagesField.checkValidity();
 });
 
 pagesField.addEventListener('invalid', () => {
-  if(pagesField.value <= 0) {
-    pagesField.setCustomValidity('# of Pages Greater Than Zero');
-  } else {
-    pagesField.setCustomValidity('');
-  }
+  pagesField.value = "";
+  pagesField.setCustomValidity("# of Pages Greater Than Zero");
+  
+  // if(pagesField.checkValidity() == false) {
+  //   pagesField.value = "";
+  //   pagesField.setCustomValidity('# of Pages Greater Than Zero');
+  //  } //else {
+  //   pagesField.setCustomValidity('# of Pages Greater Than Zero');
+  // }
 });
 
 
