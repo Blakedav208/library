@@ -27,42 +27,35 @@ const titleField = document.getElementById("author");
 const pagesField = document.getElementById("numPages");
 const hasReadField = document.getElementsByName("hasRead");
 
-const form = document.getElementById('form');
+const form = document.getElementById("form");
 
-form.addEventListener('submit', (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-pagesField.addEventListener('input', () => {
-  pagesField.setCustomValidity('');
+pagesField.addEventListener("input", () => {
+  pagesField.setCustomValidity("");
   pagesField.checkValidity();
 });
 
-pagesField.addEventListener('invalid', () => {
+pagesField.addEventListener("invalid", () => {
   pagesField.value = "";
   pagesField.setCustomValidity("# of Pages Greater Than Zero");
-  
-  // if(pagesField.checkValidity() == false) {
-  //   pagesField.value = "";
-  //   pagesField.setCustomValidity('# of Pages Greater Than Zero');
-  //  } //else {
-  //   pagesField.setCustomValidity('# of Pages Greater Than Zero');
-  // }
 });
 
-
-function determineValue(fieldToBeChecked){
-  const valueOfHasReadField = Array.from(fieldToBeChecked).filter((field) => field.checked == true);
+function determineValue(fieldToBeChecked) {
+  const valueOfHasReadField = Array.from(fieldToBeChecked).filter(
+    (field) => field.checked == true
+  );
 
   return valueOfHasReadField[0].value;
 }
-
 
 function clearFields() {
   authorField.value = "";
   titleField.value = "";
   pagesField.value = "";
-  hasReadField.forEach(field => field.checked = false);
+  hasReadField.forEach((field) => (field.checked = false));
 }
 
 function createBookElement(book) {
@@ -90,9 +83,22 @@ function createBookElement(book) {
   return bookElement;
 } //end of create book element
 
-function addBookToPage(bookCard) {
+function addBookCardToPage(bookCard) {
   bookShelf.appendChild(bookCard);
 } //end of add books to page
+
+function removeBooksFromPage() {
+  while (bookShelf.hasChildNodes()) {
+    bookShelf.removeChild(bookShelf.firstChild);
+  }
+}
+
+function showBooks(library) {
+  for (let i = 0; i < library.length; i++) {
+    let bookCard = createBookElement(library[i]);
+    addBookCardToPage(bookCard);
+  }
+}
 
 addBookBtn.addEventListener("click", () => {
   let newBook = new Book(
@@ -102,8 +108,7 @@ addBookBtn.addEventListener("click", () => {
     determineValue(hasReadField)
   );
   addBookToLibrary(newBook);
-  let bookCard = createBookElement(newBook);
-  addBookToPage(bookCard);
+  removeBooksFromPage();
+  showBooks(myLibrary);
   clearFields();
-  console.log(myLibrary);
 });
