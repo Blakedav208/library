@@ -1,10 +1,12 @@
 let myLibrary = [];
+let bookId = 0;
 
-function Book(title, author, numPages, hasRead) {
+function Book(title, author, numPages, hasRead, id) {
   this.title = title;
   this.author = author;
   this.numPages = numPages;
   this.hasRead = hasRead;
+  this.id = id;
 } //end of Book object constructor
 
 Book.prototype.info = function () {
@@ -28,6 +30,8 @@ const pagesField = document.getElementById("numPages");
 const hasReadField = document.getElementsByName("hasRead");
 
 const form = document.getElementById("form");
+
+//const removeBtns = document.querySelectorAll("button");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -64,6 +68,8 @@ function createBookElement(book) {
   const author = document.createElement("p");
   const numPages = document.createElement("p");
   const hasRead = document.createElement("p");
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove";
   bookElement.classList.add("book");
 
   title.textContent = `"${book.title}"`;
@@ -80,6 +86,9 @@ function createBookElement(book) {
   bookElement.appendChild(author);
   bookElement.appendChild(numPages);
   bookElement.appendChild(hasRead);
+  bookElement.appendChild(removeBtn);
+
+  bookElement.dataset.id = book.id
   return bookElement;
 } //end of create book element
 
@@ -100,15 +109,33 @@ function showBooks(library) {
   }
 }
 
+
+function addListenerToBook(){
+  const removeBtns = document.querySelectorAll("button");
+  Array.from(removeBtns).forEach((button) => {
+    button.addEventListener('click', (event) => {
+      let bookCardId = event.target.parentNode.dataset.id;
+      let bookCard = event.target.parentNode;
+      myLibrary.splice(Number(bookCardId), 1)
+      bookShelf.removeChild(bookCard);
+    });
+  });
+}
+
+
+
 addBookBtn.addEventListener("click", () => {
   let newBook = new Book(
     authorField.value,
     titleField.value,
     pagesField.value,
-    determineValue(hasReadField)
+    determineValue(hasReadField), 
+    bookId
   );
   addBookToLibrary(newBook);
   removeBooksFromPage();
   showBooks(myLibrary);
+  addListenerToBook();
   clearFields();
+  bookId++;
 });
