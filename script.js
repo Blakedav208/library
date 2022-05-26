@@ -21,7 +21,8 @@ function addBookToLibrary(book) {
 
 const library = document.querySelector(".library");
 const ui = document.querySelector(".ui");
-const addBookBtn = document.querySelector('input[type="submit"]');
+// const addBookBtn = document.querySelector('input[type="submit"]');
+const addBookBtn = document.querySelector('.addBook');
 const bookShelf = document.querySelector(".bookShelf");
 
 const authorField = document.getElementById("title");
@@ -36,6 +37,21 @@ const newBookBtn = document.querySelector(".new-book");
 //prevents form from refreshing when pressing the submit button
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  let newBook = new Book(
+    authorField.value,
+    titleField.value,
+    pagesField.value,
+    determineValue(hasReadField),
+    bookId
+  );
+  addBookToLibrary(newBook);
+  removeBooksFromPage();
+  showBooks(myLibrary);
+  addListenerToBook();
+  clearFields();
+  //changeVisibility();
+  console.log(myLibrary);
+  bookId++;
 });
 
 //these next two event listeners check for valid inputs on the pages field
@@ -73,7 +89,6 @@ function createBookElement(book) {
   const hasRead = document.createElement("p");
   const changeHasRead = document.createElement("input");
   changeHasRead.setAttribute("type", "radio");
-  //changeHasRead.style.display = "inline-block";
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove";
   bookElement.classList.add("book");
@@ -114,7 +129,6 @@ function createBookElement(book) {
       hasRead.textContent = "Not Read";
     }
   });
-
   bookElement.dataset.id = book.id;
   return bookElement;
 } //end of create book element
@@ -163,26 +177,27 @@ function changeVisibility() {
   }
 } //end of changeVisibility
 
-newBookBtn.addEventListener("click", () => {
-  newBookBtn.style.visibility = "hidden";
-  form.style.visibility = "visible";
-});
+// newBookBtn.addEventListener("click", () => {
+//   newBookBtn.style.visibility = "hidden";
+//   form.style.visibility = "visible";
+// });
 
-addBookBtn.addEventListener("click", () => {
-  let newBook = new Book(
-    authorField.value,
-    titleField.value,
-    pagesField.value,
-    determineValue(hasReadField),
-    bookId
-  );
-  addBookToLibrary(newBook);
-  removeBooksFromPage();
-  showBooks(myLibrary);
-  addListenerToBook();
-  clearFields();
-  changeVisibility();
-  bookId++;
+addBookBtn.addEventListener("submit", () => {
+  // let newBook = new Book(
+  //   authorField.value,
+  //   titleField.value,
+  //   pagesField.value,
+  //   determineValue(hasReadField),
+  //   bookId
+  // );
+  // addBookToLibrary(newBook);
+  // removeBooksFromPage();
+  // showBooks(myLibrary);
+  // addListenerToBook();
+  // clearFields();
+  // //changeVisibility();
+  // console.log(myLibrary);
+  // bookId++;
 });
 
 //newBookBtn.addEventListener('click', changeVisibility);
