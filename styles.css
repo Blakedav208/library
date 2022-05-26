@@ -4,11 +4,11 @@
   width: 100%; */
 }
 
-.header{
+.header {
   margin: 10px;
 }
 
-.header h2{
+.header h2 {
   font-family: "koulen";
 }
 
@@ -51,10 +51,9 @@
   margin: 10px;
 }
 
-.book p{
+.book p {
   margin: 0px;
   padding: 0px;
-  
 }
 
 form input[type="text"] {
@@ -71,21 +70,21 @@ form input[type="submit"] {
   appearance: none;
   padding: 10px;
   border: none;
-  background-color:#3F51B5;
+  background-color: #3f51b5;
   color: white;
   border-radius: 5px;
   margin: 10px;
 }
 
-form input[type="submit"]:hover{
+form input[type="submit"]:hover {
   /* transform: scale(1.2); */
   cursor: pointer;
-  background-color: #3F51F5;
+  background-color: #3f51f5;
 }
 
 form {
   visibility: hidden;
-  font-family: 'Koulen', Times, serif;
+  font-family: "Koulen", Times, serif;
   box-sizing: border-box;
   margin: 10px;
 }
@@ -94,17 +93,18 @@ input:invalid {
   background-color: pink;
 }
 
-.new-book{
-  font-family: 'Koulen', Times, serif;
+.new-book {
+  visibility: visible;
+  font-family: "Koulen", Times, serif;
   padding: 15px;
   border: none;
   margin: 20px;
-  background-color:#3F51B5;
+  background-color: #3f51b5;
   color: white;
   border-radius: 5px;
 }
 
-.new-book:hover{
+.new-book:hover {
   cursor: pointer;
-  background-color: #3F51F5;
+  background-color: #3f51f5;
 }

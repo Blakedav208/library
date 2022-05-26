@@ -90,7 +90,7 @@ function createBookElement(book) {
   bookElement.appendChild(hasRead);
   bookElement.appendChild(removeBtn);
 
-  bookElement.dataset.id = book.id
+  bookElement.dataset.id = book.id;
   return bookElement;
 } //end of create book element
 
@@ -111,37 +111,39 @@ function showBooks(library) {
   }
 }
 
-
-function addListenerToBook(){
+function addListenerToBook() {
   const removeBtns = document.querySelectorAll("button");
   Array.from(removeBtns).forEach((button) => {
-    button.addEventListener('click', (event) => {
+    button.addEventListener("click", (event) => {
       let bookCardId = event.target.parentNode.dataset.id;
       let bookCard = event.target.parentNode;
-      myLibrary.splice(Number(bookCardId), 1)
+      myLibrary.splice(Number(bookCardId), 1);
       bookShelf.removeChild(bookCard);
     });
   });
-}//end of addListenerToBook
+} //end of addListenerToBook
 
-function changeVisibility(){
-  if(form.style.visibility == "hidden"){
-    form.style.visibility = "visible";
+function changeVisibility() {
+  if (newBookBtn.style.visibility == "visible") {
     newBookBtn.style.visibility = "hidden";
-  }else {
+    form.style.visibility = "visible";
+  } else {
     form.style.visibility = "hidden";
     newBookBtn.style.visibility = "visible";
   }
 }
 
-
+newBookBtn.addEventListener("click", () => {
+  newBookBtn.style.visibility = "hidden";
+  form.style.visibility = "visible";
+});
 
 addBookBtn.addEventListener("click", () => {
   let newBook = new Book(
     authorField.value,
     titleField.value,
     pagesField.value,
-    determineValue(hasReadField), 
+    determineValue(hasReadField),
     bookId
   );
   addBookToLibrary(newBook);
@@ -153,4 +155,4 @@ addBookBtn.addEventListener("click", () => {
   bookId++;
 });
 
-newBookBtn.addEventListener('click', changeVisibility);
+//newBookBtn.addEventListener('click', changeVisibility);
