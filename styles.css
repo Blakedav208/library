@@ -108,3 +108,15 @@ input:invalid {
   cursor: pointer;
   background-color: #3f51f5;
 }
+
+.has-read-no {
+  background-color: red;
+  color: white;
+  border-radius: 8px;
+}
+
+.has-read-yes {
+  background-color: green;
+  color: white;
+  border-radius: 8px;
+}
