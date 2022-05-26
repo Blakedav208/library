@@ -84,6 +84,7 @@ form input[type="submit"]:hover{
 }
 
 form {
+  visibility: hidden;
   font-family: 'Koulen', Times, serif;
   box-sizing: border-box;
   margin: 10px;
@@ -91,4 +92,19 @@ form {
 
 input:invalid {
   background-color: pink;
+}
+
+.new-book{
+  font-family: 'Koulen', Times, serif;
+  padding: 15px;
+  border: none;
+  margin: 20px;
+  background-color:#3F51B5;
+  color: white;
+  border-radius: 5px;
+}
+
+.new-book:hover{
+  cursor: pointer;
+  background-color: #3F51F5;
 }

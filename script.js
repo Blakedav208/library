@@ -31,6 +31,8 @@ const hasReadField = document.getElementsByName("hasRead");
 
 const form = document.getElementById("form");
 
+const newBookBtn = document.querySelector(".new-book");
+
 //const removeBtns = document.querySelectorAll("button");
 
 form.addEventListener("submit", (e) => {
@@ -120,6 +122,16 @@ function addListenerToBook(){
       bookShelf.removeChild(bookCard);
     });
   });
+}//end of addListenerToBook
+
+function changeVisibility(){
+  if(form.style.visibility == "hidden"){
+    form.style.visibility = "visible";
+    newBookBtn.style.visibility = "hidden";
+  }else {
+    form.style.visibility = "hidden";
+    newBookBtn.style.visibility = "visible";
+  }
 }
 
 
@@ -137,5 +149,8 @@ addBookBtn.addEventListener("click", () => {
   showBooks(myLibrary);
   addListenerToBook();
   clearFields();
+  changeVisibility();
   bookId++;
 });
+
+newBookBtn.addEventListener('click', changeVisibility);
